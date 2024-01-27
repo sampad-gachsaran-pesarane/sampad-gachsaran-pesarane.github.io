@@ -1,0 +1,2423 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - CSS Periodic Table</title>
+  <style>
+    body {
+  font-family: Arial;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.periodic {
+  position: relative;
+  height: 200px;
+  margin-right: -1px;
+  text-shadow: none;
+}
+.periodic-row {
+  clear: both;
+  height: 10%;
+}
+.cell {
+  float: left;
+  position: relative;
+  width: 5.55%;
+  height: 100%;
+}
+.element {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 1px;
+  right: 1px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: center;
+  cursor: default;
+  pointer-events: none;
+  -webkit-transition: all 200ms ease;
+  transition: all 200ms ease;
+  background-color: rgba(0, 128, 128, 0.6);
+}
+.cell:hover .element {
+  border-color: rgba(0, 0, 0, 0.1);
+  -webkit-transform: scale(3, 3);
+  -ms-transform: scale(3, 3);
+  transform: scale(3, 3);
+  z-index: 1;
+  background-color: rgba(0, 128, 128, 0.9);
+}
+.at_num,
+.at_details {
+  position: absolute;
+  font-size: 4px;
+  color: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+}
+.at_num {
+  top: 4px;
+  right: 5px;
+}
+.symbol {
+  position: absolute;
+  top: 50%;
+  left: 0px;
+  right: 0px;
+  margin-top: -4px;
+  font-size: 9px;
+  line-height: 1;
+  height: 9px;
+  color: rgba(255, 255, 255, 0.9);
+}
+.at_details {
+  bottom: 4px;
+  left: 0px;
+  right: 0px;
+}
+.cell:nth-child(-n+2) .element,
+.cell:nth-child(n+13) .element {
+  background-color: rgba(0, 160, 96, 0.6);
+}
+.cell:nth-child(1) .element,
+.periodic-row:nth-child(2) .cell:nth-child(n+14) .element,
+.periodic-row:nth-child(3) .cell:nth-child(n+15) .element,
+.periodic-row:nth-child(4) .cell:nth-child(n+16) .element,
+.periodic-row:nth-child(5) .cell:nth-child(n+17) .element {
+  background-color: rgba(0, 192, 64, 0.6);
+}
+.periodic-row:nth-child(-n+6) .cell:nth-child(18) .element {
+  background-color: rgba(64, 192, 0, 0.6);
+}
+.periodic-row:nth-child(n+9) .element {
+  background-color: rgba(0, 96, 160, 0.6);
+}
+.cell:nth-child(-n+2):hover .element,
+.cell:nth-child(n+13):hover .element {
+  background-color: rgba(0, 160, 96, 0.9);
+}
+.cell:nth-child(1):hover .element,
+.periodic-row:nth-child(2) .cell:nth-child(n+14):hover .element,
+.periodic-row:nth-child(3) .cell:nth-child(n+15):hover .element,
+.periodic-row:nth-child(4) .cell:nth-child(n+16):hover .element,
+.periodic-row:nth-child(5) .cell:nth-child(n+17):hover .element {
+  background-color: rgba(0, 192, 64, 0.9);
+}
+.periodic-row:nth-child(-n+6) .cell:nth-child(18):hover .element {
+  background-color: rgba(64, 192, 0, 0.9);
+}
+.periodic-row:nth-child(n+9) .cell:hover .element {
+  background-color: rgba(0, 96, 160, 0.9);
+}
+.cell:nth-child(1) .element {
+  -webkit-transform-origin: 0 50%;
+  -ms-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+}
+.cell:nth-child(18) .element {
+  -webkit-transform-origin: 100% 50%;
+  -ms-transform-origin: 100% 50%;
+  transform-origin: 100% 50%;
+}
+.periodic-row:nth-child(10) .cell .element {
+  -webkit-transform-origin: 50% 100%;
+  -ms-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
+}
+.periodic-row:nth-child(1) .cell:nth-child(1) .element {
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+.periodic-row:nth-child(1) .cell:nth-child(18) .element {
+  -webkit-transform-origin: 100% 0;
+  -ms-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+}
+.periodic-row:nth-child(10) .cell:nth-child(18) .element {
+  -webkit-transform-origin: 100% 100%;
+  -ms-transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
+}
+@media (min-width: 600px) {
+  .periodic {
+    height: 460px;
+    margin-right: -2px;
+  }
+  .element {
+    right: 2px;
+    bottom: 2px;
+  }
+  .at_num,
+  .at_details {
+    font-size: 4px;
+    opacity: 1;
+  }
+  .symbol {
+    margin-top: -17px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 30px;
+    height: 30px;
+    color: rgba(255, 255, 255, 0.75);
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+  }
+}
+@media (min-width: 800px) {
+  .periodic {
+    height: 540px;
+  }
+  .symbol {
+    font-size: 20px;
+  }
+}
+@media (min-width: 992px) {
+  .periodic {
+    height: 680px;
+  }
+  .at_num,
+  .at_details {
+    font-size: 5px;
+  }
+  .symbol {
+    font-size: 24px;
+  }
+}
+@media (min-width: 1200px) {
+  .periodic {
+    height: 800px;
+  }
+  .at_num,
+  .at_details {
+    font-size: 6px;
+  }
+  .symbol {
+    font-size: 30px;
+  }
+}
+  </style>
+<link rel="stylesheet" href="animate.min.css"/>
+</head>
+<body>
+  <!-- in formooole :>>>>>>>>-->
+  <link href="bootstrap.min.css" rel="stylesheet" integrity="sha256-xWeRKjzyg6bep9D1AsHzUPEWHbWMzlRc84Z0aG+tyms= sha512-mGIRU0bcPaVjr7BceESkC37zD6sEccxE+RJyQABbbKNe83Y68+PyPM5nrE1zvbQZkSHDCJEtnAcodbhlq2/EkQ==" crossorigin="anonymous">
+<style>
+.inputBox {
+	width: 40%;
+	min-width: 200px;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	padding: 10px;
+}
+
+h4,p,h2,h5{
+	font-family: 'Lato', sans-serif;
+}
+
+.centered-text {
+	text-align: center;
+}
+
+.centered{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.header {
+	padding: 2px;
+}
+
+.informationBox {
+  z-index: 10;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #A8D4E3;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 15px;
+    overflow: scroll;
+    background: white;
+    display: none;
+}
+  
+#elementAbbreviation{
+    color: #A8D4E3;
+}
+
+.creditRow {
+	margin-top: 10%;
+	width: 100%;
+	height: 24px;
+	text-align: center;
+	color: #fff;
+	background-color: #373A3C;
+}
+</style>
+<div class="inputBox" hidden>
+	<div id="inputWrapper" class="form-group has-success">
+	  <input type="text" class="form-control form-control-success" id="input" hidden>
+	</div>
+</div>
+<div class="informationBox animate__animated">
+  <div style="display: none;" id="actualInformation">
+    <h2><span id="elementName"></span> - <span id="elementAbbreviation"></span></span></h2>
+    <p>Atomic number: <span id="atomicNumber"></span></p>
+    <p>Full Configuration: <span id="fullConfiguration"></span></p>
+    <p>Noble Gas Configuration: <span id="nobleGasConfiguration"></span></p>
+    <p>Lazy Configuration: <span id="lazyConfiguration"></span></p>
+	<p>Orbital Diagram</p>
+	<canvas id="orbitalDiagram"></canvas>
+  </div>
+  <button onclick="onme()">exit</button>
+</div>
+</body>
+<footer>
+<script src="jquery.min.js"></script>
+<script src="bootstrap.min.js" integrity="sha256-GMscmjNs6MbZvXG2HRjP3MpdOGmXv078SRgH7M723Mc= sha512-1wnhBRtA+POGVA0yREk2RlDbJEdkNvMuRBGjT1FCI5wXmpiQHZWDIB8MpANBWM/GKSPDgCA/7HTrAIFgv70/Jw==" crossorigin="anonymous"></script>
+<script>
+
+
+var elementInformation = new Array();
+elementInformation = [
+    [
+        "Hydrogen",
+        "H",
+        "1"
+    ],
+    [
+        "Helium",
+        "He",
+        "2"
+    ],
+    [
+        "Lithium",
+        "Li",
+        "3"
+    ],
+    [
+        "Beryllium",
+        "Be",
+        "4"
+    ],
+    [
+        "Boron",
+        "B",
+        "5"
+    ],
+    [
+        "Carbon",
+        "C",
+        "6"
+    ],
+    [
+        "Nitrogen",
+        "N",
+        "7"
+    ],
+    [
+        "Oxygen",
+        "O",
+        "8"
+    ],
+    [
+        "Fluorine",
+        "F",
+        "9"
+    ],
+    [
+        "Neon",
+        "Ne",
+        "10"
+    ],
+    [
+        "Sodium",
+        "Na",
+        "11"
+    ],
+    [
+        "Magnesium",
+        "Mg",
+        "12"
+    ],
+    [
+        "Aluminum",
+        "Al",
+        "13"
+    ],
+    [
+        "Silicon",
+        "Si",
+        "14"
+    ],
+    [
+        "Phosphorus",
+        "P",
+        "15"
+    ],
+    [
+        "Sulphur",
+        "S",
+        "16"
+    ],
+    [
+        "Chlorine",
+        "Cl",
+        "17"
+    ],
+    [
+        "Argon",
+        "Ar",
+        "18"
+    ],
+    [
+        "Potassium",
+        "K",
+        "19"
+    ],
+    [
+        "Calcium",
+        "Ca",
+        "20"
+    ],
+    [
+        "Scandium",
+        "Sc",
+        "21"
+    ],
+    [
+        "Titanium",
+        "Ti",
+        "22"
+    ],
+    [
+        "Vanadium",
+        "V",
+        "23"
+    ],
+    [
+        "Chromium",
+        "Cr",
+        "24"
+    ],
+    [
+        "Manganese",
+        "Mn",
+        "25"
+    ],
+    [
+        "Iron",
+        "Fe",
+        "26"
+    ],
+    [
+        "Cobalt",
+        "Co",
+        "27"
+    ],
+    [
+        "Nickel",
+        "Ni",
+        "28"
+    ],
+    [
+        "Copper",
+        "Cu",
+        "29"
+    ],
+    [
+        "Zinc",
+        "Zn",
+        "30"
+    ],
+    [
+        "Gallium",
+        "Ga",
+        "31"
+    ],
+    [
+        "Germanium",
+        "Ge",
+        "32"
+    ],
+    [
+        "Arsenic",
+        "As",
+        "33"
+    ],
+    [
+        "Selenium",
+        "Se",
+        "34"
+    ],
+    [
+        "Bromine",
+        "Br",
+        "35"
+    ],
+    [
+        "Krypton",
+        "Kr",
+        "36"
+    ],
+    [
+        "Rubidium",
+        "Rb",
+        "37"
+    ],
+    [
+        "Strontium",
+        "Sr",
+        "38"
+    ],
+    [
+        "Yttrium",
+        "Y",
+        "39"
+    ],
+    [
+        "Zirconium",
+        "Zr",
+        "40"
+    ],
+    [
+        "Niobium",
+        "Nb",
+        "41"
+    ],
+    [
+        "Molybdenum",
+        "Mo",
+        "42"
+    ],
+    [
+        "Technetium",
+        "Tc",
+        "43"
+    ],
+    [
+        "Ruthenium",
+        "Ru",
+        "44"
+    ],
+    [
+        "Rhodium",
+        "Rh",
+        "45"
+    ],
+    [
+        "Palladium",
+        "Pd",
+        "46"
+    ],
+    [
+        "Silver",
+        "Ag",
+        "47"
+    ],
+    [
+        "Cadmium",
+        "Cd",
+        "48"
+    ],
+    [
+        "Indium",
+        "In",
+        "49"
+    ],
+    [
+        "Tin",
+        "Sn",
+        "50"
+    ],
+    [
+        "Antimony",
+        "Sb",
+        "51"
+    ],
+    [
+        "Tellurium",
+        "Te",
+        "52"
+    ],
+    [
+        "Iodine",
+        "I",
+        "53"
+    ],
+    [
+        "Xenon",
+        "Xe",
+        "54"
+    ],
+    [
+        "Cesium",
+        "Cs",
+        "55"
+    ],
+    [
+        "Barium",
+        "Ba",
+        "56"
+    ],
+    [
+        "Lanthanum",
+        "La",
+        "57"
+    ],
+    [
+        "Cerium",
+        "Ce",
+        "58"
+    ],
+    [
+        "Praseodymium",
+        "Pr",
+        "59"
+    ],
+    [
+        "Neodymium",
+        "Nd",
+        "60"
+    ],
+    [
+        "Promethium",
+        "Pm",
+        "61"
+    ],
+    [
+        "Samarium",
+        "Sm",
+        "62"
+    ],
+    [
+        "Europium",
+        "Eu",
+        "63"
+    ],
+    [
+        "Gadolinium",
+        "Gd",
+        "64"
+    ],
+    [
+        "Terbium",
+        "Tb",
+        "65"
+    ],
+    [
+        "Dysprosium",
+        "Dy",
+        "66"
+    ],
+    [
+        "Holmium",
+        "Ho",
+        "67"
+    ],
+    [
+        "Erbium",
+        "Er",
+        "68"
+    ],
+    [
+        "Thulium",
+        "Tm",
+        "69"
+    ],
+    [
+        "Ytterbium",
+        "Yb",
+        "70"
+    ],
+    [
+        "Lutetium",
+        "Lu",
+        "71"
+    ],
+    [
+        "Hafnium",
+        "Hf",
+        "72"
+    ],
+    [
+        "Tantalum",
+        "Ta",
+        "73"
+    ],
+    [
+        "Tungsten",
+        "W",
+        "74"
+    ],
+    [
+        "Rhenium",
+        "Re",
+        "75"
+    ],
+    [
+        "Osmium",
+        "Os",
+        "76"
+    ],
+    [
+        "Iridium",
+        "Ir",
+        "77"
+    ],
+    [
+        "Platinum",
+        "Pt",
+        "78"
+    ],
+    [
+        "Gold",
+        "Au",
+        "79"
+    ],
+    [
+        "Mercury",
+        "Hg",
+        "80"
+    ],
+    [
+        "Thallium",
+        "Tl",
+        "81"
+    ],
+    [
+        "Lead",
+        "Pb",
+        "82"
+    ],
+    [
+        "Bismuth",
+        "Bi",
+        "83"
+    ],
+    [
+        "Polonium",
+        "Po",
+        "84"
+    ],
+    [
+        "Astatine",
+        "At",
+        "85"
+    ],
+    [
+        "Radon",
+        "Rn",
+        "86"
+    ],
+    [
+        "Francium",
+        "Fr",
+        "87"
+    ],
+    [
+        "Radium",
+        "Ra",
+        "88"
+    ],
+    [
+        "Actinium",
+        "Ac",
+        "89"
+    ],
+    [
+        "Thorium",
+        "Th",
+        "90"
+    ],
+    [
+        "Protactinium",
+        "Pa",
+        "91"
+    ],
+    [
+        "Uranium",
+        "U",
+        "92"
+    ],
+    [
+        "Neptunium",
+        "Np",
+        "93"
+    ],
+    [
+        "Plutonium",
+        "Pu",
+        "94"
+    ],
+    [
+        "Americium",
+        "Am",
+        "95"
+    ],
+    [
+        "Curium",
+        "Cm",
+        "96"
+    ],
+    [
+        "Berkelium",
+        "Bk",
+        "97"
+    ],
+    [
+        "Californium",
+        "Cf",
+        "98"
+    ],
+    [
+        "Einsteinium",
+        "Es",
+        "99"
+    ],
+    [
+        "Fermium",
+        "Fm",
+        "100"
+    ],
+    [
+        "Mendelevium",
+        "Md",
+        "101"
+    ],
+    [
+        "Nobelium",
+        "No",
+        "102"
+    ],
+    [
+        "Lawrencium",
+        "Lr",
+        "103"
+    ],
+    [
+        "Rutherfordium",
+        "Rf",
+        "104"
+    ],
+    [
+        "Dubnium",
+        "Db",
+        "105"
+    ],
+    [
+        "Seaborgium",
+        "Sg",
+        "106"
+    ],
+    [
+        "Bohrium",
+        "Bh",
+        "107"
+    ],
+    [
+        "Hassium",
+        "Hs",
+        "108"
+    ],
+    [
+        "Meitnerium",
+        "Mt",
+        "109"
+    ],
+    [
+        "Darmstadtium",
+        "Ds",
+        "110"
+    ],
+    [
+        "Roentgenium",
+        "Rg",
+        "111"
+    ],
+    [
+        "Copernicium",
+        "Cp",
+        "112"
+    ],
+    [
+        "Ununtrium",
+        "Uut",
+        "113"
+    ],
+    [
+        "Ununquadium",
+        "Uuq",
+        "114"
+    ],
+    [
+        "Ununpentium",
+        "Uup",
+        "115"
+    ],
+    [
+        "Ununhexium",
+        "Uuh",
+        "116"
+    ],
+    [
+        "Ununseptium",
+        "Uus",
+        "117"
+    ],
+    [
+        "Ununoctium",
+        "Uuo",
+        "118"
+    ]
+]
+var badInput = false;
+$(document).ready(function() {
+    loadElementInformation();
+	
+});
+
+// function loadElementInformation() {
+//     $.get("static/elements.txt", function(txt) {
+//         var lines = txt.split("\n");
+//         for (var i = 0, len = lines.length; i < len; i++) {
+//             var line = lines[i];
+//             var info = line.split("-");
+//             elementInformation.push(info);
+            
+//         }
+//     });
+//     console.log(elementInformation)
+//     parseInput();
+//     console.log(document.getElementById("input").value)
+// }
+
+
+$('#input').keydown(function(e) {
+    var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+    if (key == 13) {
+        e.preventDefault();
+     }
+});
+
+function onme(){
+	parseInput();
+}
+
+function getInformation(lookup, length) {
+    var returning;
+    for (var x = 0; x != elementInformation.length; x++) {
+        var currentInformation = elementInformation[x];
+        if (currentInformation[length].toLowerCase() == lookup.toLowerCase()) {
+            returning = currentInformation;
+            break;
+        }
+    }
+    return returning;
+}
+
+function parseInput() {
+    var input = $('#input').val();
+    console.log(input)
+    $("#actualInformation").hide();
+    if (isNaN(input) == false) { //If is number
+        setGoodInput();
+        var information = getInformation(input, 2);
+        if (typeof information != 'undefined') {
+            createInformation(information);
+        } else {
+            setBadInput();
+            $('#status').html("Invalid atomic number.");
+        }
+    } else if (input.length <= 3 && input.match(/\d+/g) == null) {
+        setGoodInput();
+        var information = getInformation(input, 1);
+        if (typeof information != 'undefined') {
+            createInformation(information);
+        } else {
+            setBadInput();
+            $('#status').html("Invalid abbreviation.");
+        }
+    } else if (input.match(/\d+/g) != null) {
+        if (input.startsWith("1s2")) {
+            setGoodInput();
+            var atomicNumber = getAtomicNumberThroughFullConfig(input.split(" "));
+            if (atomicNumber != 0) {
+                createInformation(getInformation("" + atomicNumber, 2));
+            } else {
+                setBadInput();
+                $('#status').html("Bad electron full configuration");
+            }
+        } else {
+            setGoodInput();
+            var atomicNumber = getAtomicNumberThroughLazyConfig(input.split(" "));
+            if (atomicNumber != 0) {
+                createInformation(getInformation("" + atomicNumber, 2));
+            } else {
+                setBadInput();
+                $('#status').html("Bad electron lazy configuration");
+            }
+        }
+    } else {
+        setGoodInput();
+        var information = getInformation(input, 0);
+        if (typeof information != 'undefined') {
+            createInformation(information);
+        } else {
+            setBadInput();
+            $('#status').html("Invalid element name.");
+        }
+    }
+}
+
+function setGoodInput() {
+    if (badInput) {
+        $('#input').removeClass("form-control-danger");
+        $('#input').addClass("form-control-success");
+        $('#inputWrapper').removeClass("has-danger");
+        $('#inputWrapper').addClass("has-success");
+        badInput = false;
+    }
+}
+
+function setBadInput() {
+    if (badInput == false) {
+        $('#input').removeClass("form-control-success");
+        $('#input').addClass("form-control-danger");
+        $('#inputWrapper').removeClass("has-success");
+        $('#inputWrapper').addClass("has-danger");
+        badInput = true;
+    }
+}
+
+function createInformation(information) {
+    $("#status").html("Loading information...");
+
+    $("#elementName").html(information[0]);
+    $("#elementAbbreviation").html(information[1]);
+    $("#atomicNumber").html(information[2]);
+    //Configuration Information
+    var electrons = information[2];
+    var ob = new OrbitalDiagram(parseInt(electrons));
+    for (var i = 0; i < electrons; i++) {
+        ob.putElectronInCurrentOrbital();
+    }
+    var splitConfiguration = new Array();
+    var entrySet = ob.getOrbital().getEntrySet();
+    for (var x = 0; x != entrySet.length; x++) {
+        var e = entrySet[x];
+        if (e.getValue() > 0) {
+            splitConfiguration.push(e.getKey() + e.getValue());
+        }
+    }
+	var nobleGasConfiguration;
+	var nobleGasConfigurationArrayInformation = ob.getNobleGasConfiguration(splitConfiguration);
+	if(nobleGasConfigurationArrayInformation != 0){
+		nobleGasConfiguration = "[" + nobleGasConfigurationArrayInformation[0] + "] " + getStringFromArray(superScriptConfigurationArray(nobleGasConfigurationArrayInformation[1]));
+	}else{
+		nobleGasConfiguration = "Not available on this element";
+	}
+
+    var lazyConfiguration = getStringFromArray(superScriptConfigurationArray(ob.getLazyConfiguration(splitConfiguration)));
+
+    $("#fullConfiguration").html(getStringFromArray(superScriptConfigurationArray(splitConfiguration)));
+    $("#nobleGasConfiguration").html(nobleGasConfiguration);
+    $("#lazyConfiguration").html(lazyConfiguration);
+    $("#status").html("");
+
+    //Display
+    var canvas = document.getElementById('orbitalDiagram');
+    var dupped = splitConfiguration.sort();
+    canvas.height = parseInt(dupped[dupped.length - 1].substring(0, 1)) * 48;
+    canvas.width = 600;
+    drawOrbitalDiagram(entrySet, splitConfiguration);
+    $("#actualInformation").show();
+}
+
+function superScriptConfigurationArray(splitConfiguration){
+	var superScriptedArray = new Array();
+	for(var i =0; i != splitConfiguration.length;i++){
+		var rowEnergy = splitConfiguration[i];
+		var superScriptedRowEnergy = convertRowEnergyToSuperScript(rowEnergy);
+		superScriptedArray.push(superScriptedRowEnergy);
+	}
+	return superScriptedArray;
+}
+
+function convertRowEnergyToSuperScript(rowEnergy){
+	var blocks = ["s", "p", "d", "f"];
+	var valueIndex = 0;
+	for(var i =0; i != blocks.length;i++){
+		var currentBlock = blocks[i];
+		if(rowEnergy.indexOf(currentBlock) > -1){
+			valueIndex = (rowEnergy.indexOf(currentBlock))+1;
+		}
+	}
+	var value = rowEnergy.substring(valueIndex, rowEnergy.length);
+	value = parseInt(value);
+	var superScripted = rowEnergy.substring(0, valueIndex) + "<sup>" + value + "</sup>";
+	return superScripted;
+}
+
+function drawOrbitalDiagram(entrySet, splitConfiguration) {
+    var context = document.getElementById('orbitalDiagram').getContext('2d');
+    for (var i = 0; i != entrySet.length; i++) {
+        var e = entrySet[i];
+        var oldEnergyLevel = e.getKey();
+        var electrons = e.getValue();
+        if (electrons > 0) {
+            var row = parseInt(oldEnergyLevel.substring(0, 1));
+            var energyLevel = oldEnergyLevel.substring(1, 2);
+            var orbitalAmount = getOrbitalAmount(energyLevel);
+            var electronDistribution = getEvenElectronDistribution(orbitalAmount, electrons);
+
+            context.font = "14px Lato";
+            context.fillText(oldEnergyLevel, getDrawDelay(energyLevel) + 4, (document.getElementById('orbitalDiagram').height - (row * 24 + (row * 24))) + 18);
+
+            for (var x = 1; x != (orbitalAmount + 1); x++) {
+                var currentElectrons = electronDistribution.get(x - 1);
+                drawBoxAt(getDrawDelay(energyLevel) + (x * 24), row * 24 + (row * 24), energyLevel, currentElectrons);
+            }
+        }
+    }
+}
+
+function getEvenElectronDistribution(orbitals, electrons) {
+    var distribution = new Diagram();
+    var track = -1;
+    for (var x = 0; x != orbitals; x++) {
+        distribution.put(x, 0);
+    }
+    for (var x = 0; x != electrons; x++) {
+        if (track != (orbitals - 1)) {
+            track++;
+        } else {
+            track = 0;
+        }
+        distribution.put(track, distribution.get(track) + 1);
+    }
+    return distribution;
+}
+
+function drawBoxAt(x, y, energyLevel, electronAmount) {
+    var context = document.getElementById('orbitalDiagram').getContext('2d');
+    var newY = document.getElementById('orbitalDiagram').height - y;
+    context.beginPath();
+    if (energyLevel == "s") {
+        context.strokeStyle = "#FC6060";
+    } else if (energyLevel == "p") {
+        context.strokeStyle = "#609CFC";
+    } else if (energyLevel == "d") {
+        context.strokeStyle = "#60FC8A";
+    } else if (energyLevel == "f") {
+        context.strokeStyle = "#FCF260";
+    }
+    context.rect(x, newY, 24, 24);
+    context.stroke();
+    context.strokeStyle = "#373a3c";
+    if (electronAmount > 0) {
+        var fromy = newY + 20;
+        var toy = newY + 4;
+        var fromx = x + 6;
+        var tox = x + 6;
+        var angle = Math.atan2(toy - fromy, tox - fromx);
+        context.beginPath();
+        context.moveTo(fromx, fromy);
+        context.lineTo(tox, toy);
+        context.lineTo(tox - 4 * Math.cos(angle - Math.PI / 6), toy - 4 * Math.sin(angle - Math.PI / 6));
+        context.moveTo(tox, toy);
+        context.lineTo(tox - 4 * Math.cos(angle + Math.PI / 6), toy - 4 * Math.sin(angle + Math.PI / 6));
+        context.stroke();
+    }
+    if (electronAmount > 1) {
+        var fromy = newY + 4;
+        var toy = newY + 20;
+        var fromx = x + 14;
+        var tox = fromx;
+        var angle = Math.atan2(toy - fromy, tox - fromx);
+        context.beginPath();
+        context.moveTo(fromx, fromy);
+        context.lineTo(tox, toy);
+        context.lineTo(tox - 4 * Math.cos(angle - Math.PI / 6), toy - 4 * Math.sin(angle - Math.PI / 6));
+        context.moveTo(tox, toy);
+        context.lineTo(tox - 4 * Math.cos(angle + Math.PI / 6), toy - 4 * Math.sin(angle + Math.PI / 6));
+        context.stroke();
+    }
+}
+
+function getDrawDelay(gL) {
+    if (gL == "s") {
+        return 0;
+    } else if (gL == "p") {
+        return 24 * 2;
+    } else if (gL == "d") {
+        return 24 * 6;
+    } else if (gL == "f") {
+        return 24 * 13;
+    } else {
+        return 0;
+    }
+}
+
+function getOrbitalAmount(gL) {
+    if (gL == "s") {
+        return 1;
+    } else if (gL == "p") {
+        return 3;
+    } else if (gL == "d") {
+        return 5;
+    } else if (gL == "f") {
+        return 7;
+    } else {
+        return 0;
+    }
+}
+
+function getAtomicNumberThroughLazyConfig(config) {
+    var atomicnumber = 0;
+    var ob = new OrbitalDiagram(118);
+    for (var i = 0; i < 118; i++) {
+        ob.putElectronInCurrentOrbital();
+        var fullConfiguration = "";
+        var splitConfiguration = new Array();
+        var entrySet = ob.getOrbital().getEntrySet();
+        for (var x = 0; x != entrySet.length; x++) {
+            var e = entrySet[x];
+            if (e.getValue() > 0) {
+                fullConfiguration = fullConfiguration + e.getKey() + e.getValue();
+                splitConfiguration.push(e.getKey() + e.getValue());
+            }
+        }
+        var lazyConfiguration = ob.getLazyConfiguration(splitConfiguration);
+        if (getStringFromArray(lazyConfiguration.sort()) == getStringFromArray(config.sort())) {
+            atomicnumber = i + 1;
+            break;
+        }
+    }
+    return atomicnumber;
+}
+
+function getAtomicNumberThroughFullConfig(config) {
+    var atomicnumber = 0;
+    var ob = new OrbitalDiagram(118);
+    for (var i = 0; i < 118; i++) {
+
+        ob.putElectronInCurrentOrbital();
+        var splitConfiguration = new Array();
+        var entrySet = ob.getOrbital().getEntrySet();
+        for (var x = 0; x != entrySet.length; x++) {
+            var e = entrySet[x];
+            if (e.getValue() > 0) {
+                splitConfiguration.push(e.getKey() + e.getValue());
+            }
+        }
+
+        if (getStringFromArray(splitConfiguration.sort()) == getStringFromArray(config.sort())) {
+            atomicnumber = i + 1;
+        }
+    }
+    return atomicnumber;
+}
+
+function OrbitalDiagram(electrons) {
+    this.electrons = electrons;
+    this.orbital = new Diagram();
+
+    this.blocks = ["s", "p", "d", "f"];
+
+    this.energyLevels = ["1s", "2s", "2p", "3s", "3p", "4s", "3d", "4p", "5s", "4d", "5p", "6s", "4f", "5d", "6p", "7s", "5f", "6d", "7p", "8s", "6f", "7d", "8p", "9s", "7f", "8d", "9p", "10s", "8f", "9d", "10p", "11s"];
+
+    this.nobleGasRowEnergies = ["1s2", "2p6", "3p6", "4p6", "5p6", "6p6"];
+    this.nobleGasNames = ["He", "Ne", "Ar", "Kr", "Xe", "Rn"];
+
+    this.currentEnergyLevel = "1s";
+
+    this.priorityFill = false;
+    this.priorityEnergyLevel = "";
+    this.waitPriorityFill = 0;
+
+    this.getOrbital = function() {
+        return this.orbital;
+    }
+
+    this.putElectronInCurrentOrbital = function() {
+        if (this.priorityFill == false) {
+            var currentRowEnergy = this.currentEnergyLevel + this.customGet(this.currentEnergyLevel);
+
+
+            this.basicElectronAdd();
+
+            this.checkEnergyLevel();
+            currentRowEnergy = this.currentEnergyLevel + this.customGet(this.currentEnergyLevel);
+
+            var borrowInformation = this.getBorrowingInformation(currentRowEnergy);
+            if (borrowInformation != null) {
+                var borrowCount = parseInt(borrowInformation[0]);
+                var borrowEnergyLevel = borrowInformation[1];
+                var hasPriorityFill = parseBoolean(borrowInformation[2]);
+                this.orbital.put(borrowEnergyLevel, this.customGet(borrowEnergyLevel) - 1);
+                this.orbital.put(this.currentEnergyLevel, this.customGet(this.currentEnergyLevel) + 1);
+                borrowCount = borrowCount - 1;
+                if (hasPriorityFill == true) {
+                    this.priorityFill = true;
+                    this.priorityEnergyLevel = borrowEnergyLevel;
+                    this.waitPriorityFill = borrowCount;
+                }
+            }
+        } else {
+            if (this.waitPriorityFill == 0) {
+                this.orbital.put(this.priorityEnergyLevel, (this.customGet(this.priorityEnergyLevel) + 1));
+                if (this.customGet(this.priorityEnergyLevel) == 2) {
+                    this.priorityFill = false;
+                    this.priorityEnergyLevel = "";
+                    this.waitPriorityFill = 0;
+                }
+            } else {
+                this.waitPriorityFill = this.waitPriorityFill - 1;
+                this.basicElectronAdd();
+            }
+        }
+    };
+
+    this.basicElectronAdd = function() {
+        this.checkEnergyLevel();
+        this.orbital.put(this.currentEnergyLevel, (this.customGet(this.currentEnergyLevel) + 1));
+    }
+
+    this.checkEnergyLevel = function() {
+        if (this.customGet(this.currentEnergyLevel) >= this.getMaxElectrons(this.getCurrentBlock())) {
+            this.currentEnergyLevel = this.getNextEnergyLevel(this.currentEnergyLevel);
+        }
+    }
+
+    this.customGet = function(energyLevel) {
+        if (this.orbital.containsKey(energyLevel)) {
+            return this.orbital.get(energyLevel);
+        } else {
+            this.orbital.put(energyLevel, 0);
+            return 0;
+        }
+    }
+
+    this.getNextEnergyLevel = function(energyLevel) {
+        var returning = null;
+        for (var x = 0; x != this.energyLevels.length; x++) {
+            if (this.energyLevels[x] == energyLevel) {
+                returning = this.energyLevels[x + 1];
+                break;
+            }
+        }
+        return returning;
+    }
+
+    this.getCurrentBlockIndex = function() {
+        return this.getBlockIndex(this.currentEnergyLevel.substring(1, this.currentEnergyLevel.length));
+    }
+
+    this.getCurrentBlock = function() {
+        return this.blocks[this.getCurrentBlockIndex()];
+    }
+
+    this.getBlockIndex = function(block) {
+        var returning = 0;
+        switch (block) {
+            case "s":
+                returning = 0;
+                break;
+            case "p":
+                returning = 1;
+                break;
+            case "d":
+                returning = 2;
+                break;
+            case "f":
+                returning = 3;
+                break;
+        }
+        return returning;
+    }
+
+    this.getMaxElectrons = function(gL) {
+        if (gL == "s") {
+            return 2;
+        } else if (gL == "p") {
+            return 6;
+        } else if (gL == "d") {
+            return 10;
+        } else if (gL == "f") {
+            return 14;
+        } else {
+            return 0;
+        }
+    }
+
+    this.getBorrowingInformation = function(rowEnergy) {
+        if (rowEnergy == "3d4") {
+            var borrow = ["1", "4s", "true"];
+            return borrow;
+        } else if (rowEnergy == "3d9") {
+            var borrow = ["1", "4s", "true"];
+            return borrow;
+        } else if (rowEnergy == "4d3") {
+            var borrow = ["2", "5s", "true"]; // True = Set priority back
+            // to s after borrowing
+            return borrow;
+        } else if (rowEnergy == "4d6") {
+            var borrow = ["2", "5s", "false"]; // False = don't set
+            // priority back to s
+            // after borrowing
+            return borrow;
+        } else if (rowEnergy == "4d9") {
+            var borrow = ["1", "5s", "true"];
+            return borrow;
+        } else {
+            return null;
+        }
+    }
+    this.getNobleGasConfiguration = function(splitConfiguration) {
+		var nobleGas = "";
+		var followingRowEnergies = new Array();
+		for(var i = (splitConfiguration.length -1);i != -1;i--){
+			var currentRowEnergy = splitConfiguration[i];
+
+			for(var x = (this.nobleGasRowEnergies.length - 1); x != -1; x--){
+				var currentNobleGasRowEnergy = this.nobleGasRowEnergies[x];
+				if(currentRowEnergy == currentNobleGasRowEnergy){
+					nobleGas = this.nobleGasNames[x];
+					break;
+				}
+			}
+			if(nobleGas == ''){
+				followingRowEnergies.push(currentRowEnergy);
+			}else{
+				break;
+			}
+		}
+		if(nobleGas == ""){
+			return 0;
+		}else{
+			return [nobleGas, followingRowEnergies.reverse()];
+		}
+    }
+
+    this.getLazyConfiguration = function(configuration) {
+        var lazyConfiguration = "";
+        for (var x = 0; x != configuration.length - 1; x++) { //For all rowenergies except for the last one
+            var currentRowEnergy = configuration[x];
+            var block = currentRowEnergy.substring(1, 2);
+            var electronCount = parseInt(currentRowEnergy.substring(2, currentRowEnergy.length));
+            if (electronCount != this.getMaxElectrons(block)) {
+                lazyConfiguration = lazyConfiguration + currentRowEnergy + ".";
+            }
+        }
+        lazyConfiguration = lazyConfiguration + configuration[configuration.length - 1];
+        return lazyConfiguration.split(".");
+    }
+}
+
+function getStringFromArray(a) {
+    var out = "";
+    for (var i = 0; i != a.length; i++) {
+        out = out + a[i];
+    }
+    return out;
+}
+
+function parseBoolean(s) {
+    if (s == "true") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function Diagram() {
+    var entries = new Array();
+
+    this.getEntrySet = function() {
+        return entries;
+    }
+
+    this.containsKey = function(key) {
+        var exist = false;
+        for (i = 0; i < entries.length; i++) {
+            var currentEntry = entries[i];
+            if (currentEntry.getKey() == key) {
+                exist = true;
+                break;
+            }
+        }
+        return exist;
+    }
+
+    this.get = function(key) {
+        var returning = -1;
+        for (i = 0; i < entries.length; i++) {
+            var currentEntry = entries[i];
+            if (currentEntry.getKey() == key) {
+                returning = currentEntry.getValue();
+                break;
+            }
+        }
+        return returning;
+    }
+
+    this.put = function(key, value) {
+        for (i = 0; i < entries.length; i++) {
+            var currentEntry = entries[i];
+            if (currentEntry.getKey() == key) {
+                entries.splice(i, 1);
+                break;
+            }
+        }
+        var newEntry = new Entry(key, value);
+        entries.push(newEntry);
+    }
+}
+
+function Entry(key, value) {
+    this.key = key;
+    this.value = value;
+    this.getKey = function() {
+        return this.key;
+    }
+
+    this.getValue = function() {
+        return this.value;
+    }
+}
+</script>
+</script>
+</footer>
+
+
+
+<!-- partial:index.partial.html -->
+<div class="periodic">
+  <div class="periodic-row">
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">1</div>
+        <div class="symbol">H</div>
+        <div class="at_details">hydrogen<br />1.008</div>
+      </div>
+    </div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">2</div>
+        <div class="symbol">He</div>
+        <div class="at_details">helium<br />4.0026</div>
+      </div>
+    </div>
+  </div>
+  <div class="periodic-row">
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">3</div>
+        <div class="symbol">Li</div>
+        <div class="at_details">lithium<br />6.94</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">4</div>
+        <div class="symbol">Be</div>
+        <div class="at_details">beryllium<br />9.0122</div>
+      </div>
+    </div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">5</div>
+        <div class="symbol">B</div>
+        <div class="at_details">boron<br />10.81</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">6</div>
+        <div class="symbol">C</div>
+        <div class="at_details">carbon<br />12.011</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">7</div>
+        <div class="symbol">N</div>
+        <div class="at_details">nidivogen<br />14.007</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">8</div>
+        <div class="symbol">O</div>
+        <div class="at_details">oxygen<br />15.999</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">9</div>
+        <div class="symbol">F</div>
+        <div class="at_details">fluorine<br />18.998</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">10</div>
+        <div class="symbol">Ne</div>
+        <div class="at_details">neon<br />20.180</div>
+      </div>
+    </div>
+  </div>
+  <div class="periodic-row">
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">11</div>
+        <div class="symbol">Na</div>
+        <div class="at_details">sodium<br />22.990</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">12</div>
+        <div class="symbol">Mg</div>
+        <div class="at_details">magnesium<br />24.305</div>
+      </div>
+    </div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">13</div>
+        <div class="symbol">Al</div>
+        <div class="at_details">aluminum<br />26.982</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">14</div>
+        <div class="symbol">Si</div>
+        <div class="at_details">silicon<br />28.085</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">15</div>
+        <div class="symbol">P</div>
+        <div class="at_details">phosphorus<br />30.974</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">16</div>
+        <div class="symbol">S</div>
+        <div class="at_details">sulfur<br />32.06</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">17</div>
+        <div class="symbol">Cl</div>
+        <div class="at_details">chlorine<br />35.45</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">18</div>
+        <div class="symbol">Ar</div>
+        <div class="at_details">argon<br />39.948</div>
+      </div>
+    </div>
+  </div>
+  <div class="periodic-row">
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">19</div>
+        <div class="symbol">K</div>
+        <div class="at_details">potassium<br />39.098</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">20</div>
+        <div class="symbol">Ca</div>
+        <div class="at_details">calcium<br />40.078</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">21</div>
+        <div class="symbol">Sc</div>
+        <div class="at_details">scandium<br />44.956</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">22</div>
+        <div class="symbol">Ti</div>
+        <div class="at_details">titanium<br />47.867</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">23</div>
+        <div class="symbol">V</div>
+        <div class="at_details">vanadium<br />50.942</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">24</div>
+        <div class="symbol">Cr</div>
+        <div class="at_details">chromium<br />51.996</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">25</div>
+        <div class="symbol">Mn</div>
+        <div class="at_details">manganese<br />54.938</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">26</div>
+        <div class="symbol">Fe</div>
+        <div class="at_details">iron<br />55.845</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">27</div>
+        <div class="symbol">Co</div>
+        <div class="at_details">cobalt<br />58.933</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">28</div>
+        <div class="symbol">Ni</div>
+        <div class="at_details">nickel<br />58.693</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">29</div>
+        <div class="symbol">Cu</div>
+        <div class="at_details">copper<br />63.546</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">30</div>
+        <div class="symbol">Zn</div>
+        <div class="at_details">zinc<br />65.38</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">31</div>
+        <div class="symbol">Ga</div>
+        <div class="at_details">gallium<br />69.723</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">32</div>
+        <div class="symbol">Ge</div>
+        <div class="at_details">germanium<br />72.63</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">33</div>
+        <div class="symbol">As</div>
+        <div class="at_details">arsenic<br />74.922</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">34</div>
+        <div class="symbol">Se</div>
+        <div class="at_details">selenium<br />78.96</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">35</div>
+        <div class="symbol">Br</div>
+        <div class="at_details">bromine<br />79.904</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">36</div>
+        <div class="symbol">Kr</div>
+        <div class="at_details">krypton<br />83.798</div>
+      </div>
+    </div>
+  </div>
+  <div class="periodic-row">
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">37</div>
+        <div class="symbol">Rb</div>
+        <div class="at_details">rubidium<br />85.468</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">38</div>
+        <div class="symbol">Sr</div>
+        <div class="at_details">sdivontium<br />87.62</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">39</div>
+        <div class="symbol">Y</div>
+        <div class="at_details">ytdivium<br />88.906</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">40</div>
+        <div class="symbol">Zr</div>
+        <div class="at_details">zirconium<br />91.224</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">41</div>
+        <div class="symbol">Nb</div>
+        <div class="at_details">niobium<br />92.906</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">42</div>
+        <div class="symbol">Mo</div>
+        <div class="at_details">molybdenum<br />95.96</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">43</div>
+        <div class="symbol">Tc</div>
+        <div class="at_details">technetium<br />[97.91]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">44</div>
+        <div class="symbol">Ru</div>
+        <div class="at_details">ruthenium<br />101.07</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">45</div>
+        <div class="symbol">Rh</div>
+        <div class="at_details">rhodium<br />102.91</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">46</div>
+        <div class="symbol">Pd</div>
+        <div class="at_details">palladium<br />106.42</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">47</div>
+        <div class="symbol">Ag</div>
+        <div class="at_details">silver<br />107.87</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">48</div>
+        <div class="symbol">Cd</div>
+        <div class="at_details">cadmium<br />112.41</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">49</div>
+        <div class="symbol">In</div>
+        <div class="at_details">indium<br />114.82</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">50</div>
+        <div class="symbol">Sn</div>
+        <div class="at_details">tin<br />118.71</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">51</div>
+        <div class="symbol">Sb</div>
+        <div class="at_details">antimony<br />121.76</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">52</div>
+        <div class="symbol">Te</div>
+        <div class="at_details">tellurium<br />127.60</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">53</div>
+        <div class="symbol">I</div>
+        <div class="at_details">iodine<br />126.90</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">54</div>
+        <div class="symbol">Xe</div>
+        <div class="at_details">xenon<br />131.29</div>
+      </div>
+    </div>
+  </div>
+  <div class="periodic-row">
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">55</div>
+        <div class="symbol">Cs</div>
+        <div class="at_details">cesium<br />132.91</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">56</div>
+        <div class="symbol">Ba</div>
+        <div class="at_details">barium<br />137.33</div>
+      </div>
+    </div>
+    <div class="cell"></div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">72</div>
+        <div class="symbol">Hf</div>
+        <div class="at_details">hafnium<br />178.49</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">73</div>
+        <div class="symbol">Ta</div>
+        <div class="at_details">tantalum<br />180.95</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">74</div>
+        <div class="symbol">W</div>
+        <div class="at_details">tungsten<br />183.84</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">75</div>
+        <div class="symbol">Re</div>
+        <div class="at_details">rhenium<br />186.21</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">76</div>
+        <div class="symbol">Os</div>
+        <div class="at_details">osmium<br />190.23</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">77</div>
+        <div class="symbol">Ir</div>
+        <div class="at_details">iridium<br />192.22</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">78</div>
+        <div class="symbol">Pt</div>
+        <div class="at_details">platinum<br />195.08</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">79</div>
+        <div class="symbol">Au</div>
+        <div class="at_details">gold<br />196.97</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">80</div>
+        <div class="symbol">Hg</div>
+        <div class="at_details">mercury<br />200.59</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">81</div>
+        <div class="symbol">Tl</div>
+        <div class="at_details">thallium<br />204.38</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">82</div>
+        <div class="symbol">Pb</div>
+        <div class="at_details">lead<br />207.2</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">83</div>
+        <div class="symbol">Bi</div>
+        <div class="at_details">bismuth<br />208.98</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">84</div>
+        <div class="symbol">Po</div>
+        <div class="at_details">polonium<br />[208.98]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">85</div>
+        <div class="symbol">At</div>
+        <div class="at_details">astatine<br />[209.99]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">86</div>
+        <div class="symbol">Rn</div>
+        <div class="at_details">radon<br />[222.02]</div>
+      </div>
+    </div>
+  </div>
+  <div class="periodic-row">
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">87</div>
+        <div class="symbol">Fr</div>
+        <div class="at_details">francium<br />[223.02]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">88</div>
+        <div class="symbol">Ra</div>
+        <div class="at_details">radium<br />[226.03]</div>
+      </div>
+    </div>
+    <div class="cell"></div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">104</div>
+        <div class="symbol">Rf</div>
+        <div class="at_details">rutherfordium<br />[265.12]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">105</div>
+        <div class="symbol">Db</div>
+        <div class="at_details">dubnium<br />[268.13]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">106</div>
+        <div class="symbol">Sg</div>
+        <div class="at_details">seaborgium<br />[271.13]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">107</div>
+        <div class="symbol">Bh</div>
+        <div class="at_details">bohrium<br />[270]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">108</div>
+        <div class="symbol">Hs</div>
+        <div class="at_details">hassium<br />[277.15]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">109</div>
+        <div class="symbol">Mt</div>
+        <div class="at_details">meitnerium<br />[276.15]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">110</div>
+        <div class="symbol">Ds</div>
+        <div class="at_details">darmstadtium<br />[281.16]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">111</div>
+        <div class="symbol">Rg</div>
+        <div class="at_details">roentgenium<br />[280.16]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">112</div>
+        <div class="symbol">Cn</div>
+        <div class="at_details">copernicium<br />[285.17]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">113</div>
+        <div class="symbol">Uut</div>
+        <div class="at_details">unundivium<br />[284.18]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">114</div>
+        <div class="symbol">Fl</div>
+        <div class="at_details">flerovium<br />[289.19]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">115</div>
+        <div class="symbol">Uup</div>
+        <div class="at_details">ununpentium<br />[288.19]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">116</div>
+        <div class="symbol">Lv</div>
+        <div class="at_details">livermorium<br />[293]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">117</div>
+        <div class="symbol">Uus</div>
+        <div class="at_details">ununseptium<br />[294]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">118</div>
+        <div class="symbol">Uuo</div>
+        <div class="at_details">ununoctium<br />[294]</div>
+      </div>
+    </div>
+  </div>
+  <div class="periodic-row"></div>
+  <div class="periodic-row">
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">57</div>
+        <div class="symbol">La</div>
+        <div class="at_details">lanthanum<br />138.91</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">58</div>
+        <div class="symbol">Ce</div>
+        <div class="at_details">cerium<br />140.12</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">59</div>
+        <div class="symbol">Pr</div>
+        <div class="at_details">praseodymium<br />140.91</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">60</div>
+        <div class="symbol">Nd</div>
+        <div class="at_details">neodymium<br />144.24</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">61</div>
+        <div class="symbol">Pm</div>
+        <div class="at_details">promethium<br />[144.91]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">62</div>
+        <div class="symbol">Sm</div>
+        <div class="at_details">samarium<br />150.36</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">63</div>
+        <div class="symbol">Eu</div>
+        <div class="at_details">europium<br />151.96</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">64</div>
+        <div class="symbol">Gd</div>
+        <div class="at_details">gadolinium<br />157.25</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">65</div>
+        <div class="symbol">Tb</div>
+        <div class="at_details">terbium<br />158.93</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">66</div>
+        <div class="symbol">Dy</div>
+        <div class="at_details">dysprosium<br />162.50</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">67</div>
+        <div class="symbol">Ho</div>
+        <div class="at_details">holmium<br />164.93</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">68</div>
+        <div class="symbol">Er</div>
+        <div class="at_details">erbium<br />167.26</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">69</div>
+        <div class="symbol">Tm</div>
+        <div class="at_details">thulium<br />168.93</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">70</div>
+        <div class="symbol">Yb</div>
+        <div class="at_details">ytterbium<br />173.05</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">71</div>
+        <div class="symbol">Lu</div>
+        <div class="at_details">lutetium<br />174.97</div>
+      </div>
+    </div>
+  </div>
+  <div class="periodic-row">
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">89</div>
+        <div class="symbol">Ac</div>
+        <div class="at_details">actinium<br />[227.03]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">90</div>
+        <div class="symbol">Th</div>
+        <div class="at_details">thorium<br />232.04</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">91</div>
+        <div class="symbol">Pa</div>
+        <div class="at_details">protactinium<br />231.04</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">92</div>
+        <div class="symbol">U</div>
+        <div class="at_details">uranium<br />238.03</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">93</div>
+        <div class="symbol">Np</div>
+        <div class="at_details">neptunium<br />[237.05]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">94</div>
+        <div class="symbol">Pu</div>
+        <div class="at_details">plutonium<br />[244.06]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">95</div>
+        <div class="symbol">Am</div>
+        <div class="at_details">americium<br />[243.06]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">96</div>
+        <div class="symbol">Cm</div>
+        <div class="at_details">curium<br />[247.07]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">97</div>
+        <div class="symbol">Bk</div>
+        <div class="at_details">berkelium<br />[247.07]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">98</div>
+        <div class="symbol">Cf</div>
+        <div class="at_details">californium<br />[251.08]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">99</div>
+        <div class="symbol">Es</div>
+        <div class="at_details">einsteinium<br />[252.08]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">100</div>
+        <div class="symbol">Fm</div>
+        <div class="at_details">fermium<br />[257.10]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">101</div>
+        <div class="symbol">Md</div>
+        <div class="at_details">mendelevium<br />[258.10]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">102</div>
+        <div class="symbol">No</div>
+        <div class="at_details">nobelium<br />[259.10]</div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="element">
+        <div class="at_num">103</div>
+        <div class="symbol">Lr</div>
+        <div class="at_details">lawrencium<br />[262.11]</div>
+      </div>
+    </div>
+  </div>
+  <div style="clear: both;"></div>
+</div>
+<!-- partial -->
+
+
+  <script>
+    console.log("hello")
+
+document.addEventListener('DOMContentLoaded', function () {
+    console.log("hello");
+    
+    // Get all elements with the class name 'element'
+    var elements = document.getElementsByClassName('element');
+    console.log(elements);
+
+    Array.from(elements).forEach(function(element) {
+        element.parentNode.onclick = function() { 
+            console.log(element.getElementsByClassName("at_num")[0].textContent);
+            document.getElementById("input").value = element.getElementsByClassName("at_num")[0].textContent;
+            document.getElementsByClassName("informationBox")[0].style.display = "inline";
+            document.getElementsByClassName("informationBox")[0].className = "informationBox animate__animated animate__fadeInDown";
+            parseInput();
+        };
+        });
+});
+
+function onme(){
+  document.getElementsByClassName("informationBox")[0].className = "informationBox animate__animated animate__fadeOutDown";
+}
+  </script> 
+</body>
+</html>
