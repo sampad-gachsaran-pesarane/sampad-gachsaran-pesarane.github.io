@@ -489,7 +489,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 .content {
-  background: #fef6dd;
+  background: #e2e0de;
   position: relative;
   display: flex;
   flex-direction: column;
